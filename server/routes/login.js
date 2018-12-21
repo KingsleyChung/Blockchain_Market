@@ -58,7 +58,16 @@ const register = async ctx => {
   }
 }
 
+const getBalance = async ctx => {
+  let user = userDBController.findUser(ctx.user.username)
+  ctx.body = {
+    balance: user.balance,
+    code: 0
+  }
+}
+
 module.exports = {
   'POST /api/login': login,
-  'POST /api/register': register
+  'POST /api/register': register,
+  'GET /api/balance': getBalance
 }

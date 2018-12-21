@@ -59,7 +59,7 @@ export default {
       }).catch(() => {})
     },
     async buy () {
-      let res = await this.$axios.get(`/api/buyGoods?goodsId=${this.goods._id}&amount=${this.amount}`)
+      let res = await this.$axios.get(`/api/buyGoods?goodsId=${this.goods._id}&amount=${parseInt(this.amount)}`)
       if (res.data.code === 0) {
         this.getGoods()
         this.$notify({

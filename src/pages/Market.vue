@@ -5,6 +5,10 @@
         <img class="user-icon" src="../assets/icons/user.png" />
         {{username}}
       </div>
+      <div>
+        <img class="wallet-icon" src="../assets/icons/wallet.png" />
+        ${{balance}}
+      </div>
       <img class="logout-icon" src="../assets/icons/logout.png" @click="logout"/>
     </div>
     <div class="recommand-title" v-if="recommandStatus">为您推荐</div>
@@ -28,13 +32,15 @@ export default {
     goodsCard
   },
   async created () {
+    this.getBalance()
     this.getAllGoods()
   },
   data () {
     return {
       goods: [],
       recommandStatus: false,
-      username: this.$store.getters.getStorage ? this.$store.getters.getStorage.username : null
+      username: this.$store.getters.getStorage ? this.$store.getters.getStorage.username : null,
+      balance: 0
     }
   },
   computed: {
@@ -65,6 +71,12 @@ export default {
     async getRecommandGoods () {
       let res = await this.$axios.get(`/api/recommandGoods`)
       this.goods = res.data.recommands
+    },
+    async getBalance () {
+      let res = await this.$axios.get(`/api/balance`)
+      if (res.data.code === 0) {
+        this.balance = res.data.balance
+      }
     },
     changeGoodsList () {
       if (this.recommandStatus) {
@@ -107,6 +119,11 @@ export default {
 .user-icon {
   width: 0.8rem;
   height: 0.8rem;
+  margin-right: 0.2rem;
+}
+.wallet-icon {
+  width: 0.7rem;
+  height: 0.7rem;
   margin-right: 0.2rem;
 }
 .logout-icon {
