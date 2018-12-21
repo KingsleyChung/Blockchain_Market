@@ -59,7 +59,7 @@ const register = async ctx => {
 }
 
 const getBalance = async ctx => {
-  let user = userDBController.findUser(ctx.user.username)
+  let user = await userDBController.findUser(ctx.user.username)
   ctx.body = {
     balance: user.balance,
     code: 0
