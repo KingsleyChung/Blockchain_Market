@@ -28,8 +28,6 @@ export default {
     goodsCard
   },
   async created () {
-
-    console.log(this.$store.getters.getStorage)
     this.getAllGoods()
   },
   data () {
