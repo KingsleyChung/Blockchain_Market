@@ -41,7 +41,9 @@ const register = async ctx => {
   user = {
     username: ctx.params.username,
     password: ctx.params.password,
-    balance: 100
+    balance: 100,
+    records: null,
+    recommands: []
   }
   user = await userDBController.addUser(user)
   const userInfo = {username: ctx.params.username, password: ctx.params.password}
