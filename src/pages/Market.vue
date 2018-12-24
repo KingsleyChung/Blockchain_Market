@@ -97,7 +97,6 @@ export default {
 <style scoped>
 .container {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -138,6 +137,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 0.2rem;
 }
 .sub-container:nth-child(1) {
   padding-left: 0.2rem;

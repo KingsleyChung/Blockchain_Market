@@ -66,24 +66,25 @@ const oneGoods = async ctx => {
 const buyGoods = async ctx => {
   let user = await userDBController.findUser(ctx.user.username)
   let goods = await goodsDBController.findOneGoods(ctx.params.goodsId)
-  if (user.balance < goods.price * ctx.params.amount) {
+  let amount = parseInt(ctx.params.amount)
+  if (user.balance < goods.price * amount) {
     ctx.body = {
       msg: '余额不足',
       code: 2
     }
     return
   }
-  if (goods.stock < ctx.params.amount) {
+  if (goods.stock < amount) {
     ctx.body = {
       msg: '库存不足',
       code: 2
     }
     return
   }
-  await goodsDBController.saleGoods(ctx.params.goodsId, ctx.params.amount)
-  user.goods[ctx.params.goodsId].amount += ctx.params.amount
-  user.goods[ctx.params.goodsId].bought += ctx.params.amount
-  user.balance -= goods.price * ctx.params.amount
+  await goodsDBController.saleGoods(ctx.params.goodsId, amount)
+  user.goods[ctx.params.goodsId].amount += amount
+  user.goods[ctx.params.goodsId].bought += amount
+  user.balance -= goods.price * amount
   await userDBController.updateUser(ctx.user.username, user)
   ctx.body = {
     msg: 'success',

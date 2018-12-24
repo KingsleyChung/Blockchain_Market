@@ -7,7 +7,7 @@ import App from './App'
 import router from './router'
 import axios from './axios'
 import store from './store'
-import 'lib-flexible/flexible'
+import 'lib-flexible'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
