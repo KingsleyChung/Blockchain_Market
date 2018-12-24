@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from time import sleep
 import pandas as pd
 
 def connectMongo(host, port, username, password, db):
