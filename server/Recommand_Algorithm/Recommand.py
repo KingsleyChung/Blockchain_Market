@@ -72,5 +72,6 @@ def main():
 
 while True:
   main()
+  sleep(120)
 
 # exec(open("Recommand.py",encoding='utf-8').read())
